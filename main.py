@@ -1,5 +1,6 @@
 from PIL import Image
 import sys
+import numpy as np
 
 
 class CliPlayer:
@@ -33,7 +34,10 @@ class CliPlayer:
 
             brightness: int = sum(pixel)  # max 3*255 = (765)
             # min 3*0
-            return symbols[brightness % len(symbols)]
+
+            for index, zone in enumerate(np.array_split(range(766), len(symbols))):
+                if brightness in zone:
+                    return symbols[index]
 
         new_list_of_symbols = []
 
