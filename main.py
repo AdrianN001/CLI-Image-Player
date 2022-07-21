@@ -8,8 +8,11 @@ class CliPlayer:
     Image: Image
     Pixels: list[list]
 
-    def __init__(self, file_location: str):
-        self.Image = Image.open(file_location)
+    def __init__(self, file_location: str = None, image: Image = None):
+        if file_location is not None:
+            self.Image = Image.open(file_location)
+        elif image is not None:
+            self.Image = image
 
     def __resize_image(self) -> Image:
         image_size_ratio = self.Image.size[1] / self.Image.size[0]
