@@ -1,3 +1,4 @@
+
 from PIL import Image
 import sys
 import numpy as np
@@ -32,9 +33,8 @@ class CliPlayer:
         def helper(pixel: tuple[int]) -> str:
             symbols = "0@#&;*,."
 
-            brightness: int = sum(pixel)  # max 3*255 = (765)
+            brightness: int = sum(pixel[:-1])  # max 3*255 = (765)
             # min 3*0
-
             for index, zone in enumerate(np.array_split(range(766), len(symbols))):
                 if brightness in zone:
                     return symbols[index]
@@ -60,5 +60,5 @@ class CliPlayer:
 
 
 if __name__ == "__main__":
-    Test = CliPlayer("Sample_2.png")
+    Test = CliPlayer("sample_image.png")
     Test.show()
